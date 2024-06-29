@@ -67,9 +67,10 @@ const iniciarSesion = async (req, res) => {
     try {
         // recupera los datos del formulario
         const placa = req.body.placa
+        const dni = req.body.dni
 
-        // consulta para obtener el conductor por su placa
-        const conductor = await bd.query('SELECT * FROM conductores WHERE placa = $1', [placa])
+        // consulta para obtener el conductor por su placa y dni
+        const conductor = await bd.query('SELECT * FROM conductores WHERE placa = $1 AND dni = $2', [placa, dni])
 
         // si el conductor no existe
         if (conductor.rows.length <= 0) {
@@ -82,6 +83,7 @@ const iniciarSesion = async (req, res) => {
         // si el conductor existe
         res.status(200).json({
             id: conductor.rows[0].id,
+            nombre: conductor.rows[0].nombre,
             estado: 'ok'
         })
 

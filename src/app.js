@@ -5,16 +5,16 @@ import rutas from './conductor.ruta.js'
 // inicializar express
 const app = express()
 
-// habilitar cors para poder hacer peticiones
+// habilitar permisos para poder hacer peticiones
 app.use(cors())
 
-// habilitar body parser como json
+// habilitar que acepte formato json
 app.use(express.json())
 
 // asignar rutas
 app.use('/api', rutas)
 
-// ruta no encontrada
+// cuando una ruta no se encuentra definida
 app.use((req, res, next) => {
     res.status(400).json({
         message: "ruta no encontrada"
