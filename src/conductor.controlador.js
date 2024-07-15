@@ -145,5 +145,23 @@ const eliminarConductor = async (req, res) => {
     }
 }
 
+const obtenerConductoresCrear = async (req, res) => {
+    try {
+        // consulta que devuelve todos los conductores
+        const respuesta = await bd.query(
+            'SELECT id, nombre, dni FROM conductores'
+        )
+        // retorna los conductores si todo sale bien
+        res.status(200).json({
+            datos: respuesta.rows
+        })
+    } catch (error) {
+        // retorna un error si algo sale mal
+        return res.status(500).json({
+            mensaje: 'Algo salió mal'
+        })
+    }
+}
+
 // Exportando las funciones para las rutas de la API
-export { obtenerConductores, obtenerConductor, crearConductor, actualizarConductor, eliminarConductor, iniciarSesion }
+export { obtenerConductores, obtenerConductor, crearConductor, actualizarConductor, eliminarConductor, iniciarSesion, obtenerConductoresCrear }

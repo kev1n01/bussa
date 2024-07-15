@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { obtenerConductores, obtenerConductor, crearConductor, actualizarConductor, eliminarConductor, iniciarSesion } from "./conductor.controlador.js"
+import { obtenerConductores, obtenerConductor, crearConductor, actualizarConductor, eliminarConductor, iniciarSesion, obtenerConductoresCrear } from "./conductor.controlador.js"
 
 // Definiendo el ruteador
 const ruteador = Router()
@@ -11,6 +11,7 @@ ruteador.get('/conductor/:id', obtenerConductor)
 ruteador.post('/conductores', crearConductor)
 ruteador.put('/conductor/:id', actualizarConductor)
 ruteador.delete('/conductor/:id', eliminarConductor)
+ruteador.get('/conductores-crear', obtenerConductoresCrear)
 
 // Exportando el ruteador
 export default ruteador
